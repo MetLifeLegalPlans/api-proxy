@@ -1,4 +1,6 @@
 :80
 
-reverse_proxy /api* {env.BACKEND_URI}
+reverse_proxy /api* {
+  to {env.BACKEND_URI}
+}
 reverse_proxy localhost:3000
