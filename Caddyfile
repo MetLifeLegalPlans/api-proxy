@@ -1,4 +1,4 @@
 :80
 
-reverse_proxy /api* {$BACKEND_HOST}:3001
+reverse_proxy /api* {$BACKEND_URI}
 reverse_proxy frontend:3000
