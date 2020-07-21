@@ -1,6 +1,11 @@
 :80
 
 reverse_proxy /api* {
-  to {env.BACKEND_URI}
+  to {$BACKEND_URI}
+  header_up Host {http.reverse_proxy.upstream.host}
+  transport http {
+    tls
+  }
 }
+
 reverse_proxy localhost:3000
