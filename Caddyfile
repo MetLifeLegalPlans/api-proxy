@@ -9,7 +9,7 @@ reverse_proxy /api* {
 
 reverse_proxy localhost:3000 {
   header_down X-FRAME-Options "DENY"
-  header_down Cache-Control "no-cache, no-store"
+  header_down Content-Security-Policy "frame-ancestors 'none'"
   header_down Strict-Transport-Security "max-age=31536000; includeSubDomains"
   header_down X-Content-Type-Options "nosniff"
 }
