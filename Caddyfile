@@ -5,6 +5,7 @@ reverse_proxy /api* {
   header_up Host {http.reverse_proxy.upstream.host}
   header_up Cache-Control "no-cache, no-store"
   header_down X-Content-Type-Options "nosniff"
+  header_down X-XSS-Protection "1; mode=block"
 }
 
 reverse_proxy localhost:3000 {
@@ -12,4 +13,5 @@ reverse_proxy localhost:3000 {
   header_down Content-Security-Policy "frame-ancestors 'none'"
   header_down Strict-Transport-Security "max-age=31536000; includeSubDomains"
   header_down X-Content-Type-Options "nosniff"
+  header_down X-XSS-Protection "1; mode=block"
 }
