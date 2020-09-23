@@ -3,11 +3,13 @@
 reverse_proxy /api* {
   to {$BACKEND_URI}
   header_up Host {http.reverse_proxy.upstream.host}
-  header_up Cache-Control no-cache, no-store
+  header_up Cache-Control "no-cache, no-store"
+  header_down X-Content-Type-Options "nosniff"
 }
 
 reverse_proxy localhost:3000 {
   header_down X-FRAME-Options "DENY"
-  header_down Cache-Control no-cache, no-store
-  header_down Strict-Transport-Security: max-age=31536000; includeSubDomains
+  header_down Cache-Control "no-cache, no-store"
+  header_down Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  header_down X-Content-Type-Options "nosniff"
 }
